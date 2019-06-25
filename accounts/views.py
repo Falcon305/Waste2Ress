@@ -1,37 +1,61 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+from django.views.generic import TemplateView
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.db.models import Count
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, ListView, UpdateView
+from .decorators import seller_required, buyer_required
+from .forms import SellerSignUpForm, BuyerSignUpForm
+from .models import Seller, Buyer, User
 from django.contrib import messages, auth
-from django.contrib.auth.models import User
-# Create your views here.
 
-def register(request):
-    if request.method == 'POST':
-        #Get form values:
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
-        #Check if passwords match
-        if password == password2:
-            #Check username
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username is taken')
-                return redirect('register')
-            else :
-                if User.objects.filter(email=email).exists():
-                    messages.error(request, 'Email is taken')
-                    return redirect('register')
-                else:
-                    user = User.objects.create_user(username=username, password=password, first_name=first_name, email=email, last_name=last_name)
-                    user.save()
-                    messages.success(request, 'You are now registerd and ready to login')
-                    return redirect('login')
-        else:    
-            messages.error(request, 'Passwords do not match')
-            return redirect('register')
-    else:
-        return render(request, 'accounts/register.html')
+
+class SignUpView(TemplateView):
+    template_name = 'accounts/register.html'
+
+
+def home(request):
+    if request.user.is_authenticated:
+        if request.user.is_buyer:
+            return redirect('index')
+        else:
+            return redirect('listings')
+    return render(request, 'index')
+
+
+
+class BuyerSignUpView(CreateView):
+    model = User
+    form_class = BuyerSignUpForm
+    template_name = 'accounts/register_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'buyer'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
+
+class SellerSignUpView(CreateView):
+    model = User
+    form_class = SellerSignUpForm
+    template_name = 'accounts/register_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'seller'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('listings')
 
 def login(request):
     if request.method == 'POST':
@@ -41,7 +65,10 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('dashboard')
+            if user.is_seller:
+                return redirect('dashboard')
+            else :
+                return redirect('listings')
         else :
             messages.error(request, 'Invalid credentials')
             return redirect('login')
@@ -53,5 +80,8 @@ def logout(request):
     messages.success(request, 'You are now logged out')
     return redirect('index')
 
+
+@login_required
+@seller_required
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
