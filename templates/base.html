@@ -8,20 +8,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'css/all.css' %}%">
+  <link rel="stylesheet" href="{% static 'css/all.css' %}">
   <!-- Bootstrap -->
   <link rel="stylesheet" href=" {% static 'css/bootstrap.css' %}">
   <!-- Custom -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <!-- LightBox -->
   <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+  <!-- icons -->
+  <link href="{% static 'css/fontawesome.min.css' %}" rel="stylesheet" >
+  <!-- Other Fonts From Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arima+Madurai&display=swap" rel="stylesheet">
 
 
   <title>Waste To Resources</title>
 </head>
 
 <body>
-    {% include "partials/_topbar.html" %}
     {% include "partials/_navbar.html" %}
     {% block content %}
     {% endblock %}

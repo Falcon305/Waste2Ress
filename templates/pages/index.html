@@ -7,11 +7,11 @@
 {% block content %}
 <!-- Showcase -->
 <section id="showcase">
-    <div class="container text-center">
+    <div class="container text-center ">
       <div class="home-search p-5">
-        <div class="overlay p-5">
+        <div class="overlay p-5 rounded">
           <h1 class="display-4 mb-4">
-            Property Searching Just Got So Easy
+            Bidding On Trash Just Got So Easy
           </h1>
           <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
             voluptatum tempore! Consectetur, id commodi!</p>
@@ -71,49 +71,45 @@
   <!-- Listings -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Latest Listings</h3>
+      <h3 class="text-center text-secondary mb-3 display-4 my-title">Latest Listings</h3>
       <div class="row">
         {% if listings %}
           {% for listing in listings %}
             <!-- Listing 1 -->
-            <div class="col-md-6 col-lg-4 mb-4">
+            <div class="col-md-6 col-lg-4 mb-4 my-title">
               <div class="card listing-preview">
                 <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">${{ listing.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">{{ listing.price | intcomma }}MAD</span>
                   </h2>
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{ listing.title }}</h4>
+                    <h4 class="text-primary ">{{ listing.title }}</h4>
                     <p>
                       <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-th-large"></i> Sqft: {{ listing.sqft }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
-                  </div>
-                  <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-bed"></i> quantity: {{ listing.quantity }}</div>
-                    <div class="col-6">
-                      <i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
+                    <div class="col-8">
+                      <i class="fas fa-city"></i> City: {{listing.city }}</div>
+                    <div class="col-8">
+                      <i class="fas fa-weight-hanging"></i> Quantity: {{listing.quantity }} TON</div>
+                      <div class="col-8">
+                        <i class="fas fa-truck"></i> {{listing.delivery }}</div>
+                      <div class="col-8">
+                        <i class="fas fa-map-marker-alt"></i> ZipCode: {{listing.zipcode }}</div>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
-                    <div class="col-6">
-                      <i class="fas fa-user"></i> {{ listing.realtor }}</div>
-                  </div>
-                  <div class="row text-secondary pb-2">
-                    <div class="col-6">
-                      <i class="fas fa-clock"></i> {{ listing.date_posted | timesince }}</div>
+                    <div class="col-8">
+                      <i class="fas fa-user"></i> {{listing.seller }}</div>
+                      <div class="col-8">
+                        <i class="fas fa-clock"></i> {{listing.date_posted | timesince }}</div>
                   </div>
                   <hr>
-                  <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-secondary btn-block">BID NOW</a>
                 </div>
               </div>
             </div>
@@ -139,16 +135,16 @@
             hic dignissimos ratione ea quae.</p>
         </div>
         <div class="col-md-4">
-          <i class="fas fa-home fa-4x mr-4"></i>
+          <i class="fa  fa-trash fa-4x mr-4"></i>
           <hr>
-          <h3>Propery Management</h3>
+          <h3>Trash Selling Service</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>
         <div class="col-md-4">
-          <i class="fas fa-suitcase fa-4x mr-4"></i>
+          <i class="fa fa-money-bill-alt fa-4x mr-4" aria-hidden="true"></i>
           <hr>
-          <h3>Renting & Selling</h3>
+          <h3>Bidding & Get The best Price</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae, provident iste consequatur
             hic dignissimos ratione ea quae.</p>
         </div>
