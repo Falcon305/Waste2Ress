@@ -1,7 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Listing
 from .choices import price_choices, quantity_choices, state_choices
+from django.contrib.auth.decorators import login_required
+from accounts.models import User, Seller, Buyer
+from accounts.decorators import buyer_required, seller_required
+from django.utils import timezone
+
 
 # Create your views here.
 
@@ -64,3 +69,26 @@ def search(request):
     }
 
     return render(request, 'listings/search.html', context)
+
+'''@login_required
+@seller_required
+def create(request):
+    if request.method == 'POST':
+        if request.POST['title'] and request.POST['body'] and request.POST['description'] and request.POST['qunti'] and request.FILES['image_main']:
+            product = Listing()
+            product.title = request.POST['title']
+            product.body = request.POST['body']
+            if request.POST['url'].startswith('http://') or request.POST['url'].startswith('https://'):
+                product.url = request.POST['url']
+            else :
+                product.url = 'http://' + request.POST['url']
+            product.icon = request.FILES['icon']
+            product.image = request.FILES['image']
+            product.pub_date = timezone.datetime.now()
+            product.hunter = request.user
+            product.save()
+            return redirect('/listings/' + str(listing.id))
+        else :
+            return render(request, 'listings/create.html', {'error': 'All Fields are required'})
+    else :
+        return render(request, 'listings/create.html')'''

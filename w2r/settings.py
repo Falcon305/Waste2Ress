@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'wtordb',
-        'USER': 'hatim',
+        'USER': 'hrazani',
         'PASSWORD': 'qwerty1234',
         'HOST': 'localhost',
         'PORT': '5432',
