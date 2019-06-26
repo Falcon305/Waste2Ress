@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from listings.models import Listing
-from sellers.models import Seller
+from accounts.models import Seller
 from listings.choices import price_choices, quantity_choices, state_choices
 
 # Create your views here.

@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from sellers.models import Seller
+from accounts.models import Seller, Buyer, User
 # Create your models here.
 
 '''class Listing(models.Model):
@@ -75,16 +75,16 @@ class Auction(models.Model):
     time_ending = models.DateTimeField()
 
 class Watchlist(models.Model):
-    user_id = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Buyer, on_delete=models.CASCADE)
     auction_id = models.ForeignKey(Auction, on_delete=models.CASCADE)
 
 class Bid(models.Model):
-    user_id = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Buyer, on_delete=models.CASCADE)
     auction_id = models.ForeignKey(Auction, on_delete=models.CASCADE)
     bid_time = models.DateTimeField(auto_now_add=True, blank=True)
 
 class Chat(models.Model):
     auction_id = models.ForeignKey(Auction, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Seller, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
     time_sent = models.DateTimeField()
