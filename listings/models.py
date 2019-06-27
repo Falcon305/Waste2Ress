@@ -56,7 +56,7 @@ class Listing(models.Model):
         choices=CATEGORIES
     )
     date_posted = models.DateTimeField(auto_now_add=True, blank=True)
-    seller = models.ForeignKey(Seller, on_delete=models.DO_NOTHING)
+    seller = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     price = models.IntegerField(default=0)
     is_published = models.BooleanField(default=True)
     address = models.CharField(max_length=255)
@@ -67,7 +67,7 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
-
+        
 class Auction(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING)
     number_of_bids = models.IntegerField()
