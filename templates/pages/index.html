@@ -17,28 +17,21 @@
             voluptatum tempore! Consectetur, id commodi!</p>
           <div class="search">
             <form action="{% url 'search' %}">
+              {% if user.is_authenticated %}
               <!-- Form Row 1 -->
               <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-4">
                   <label class="sr-only">Keywords</label>
                   <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-4">
                   <label class="sr-only">City</label>
                   <input type="text" name="city" class="form-control" placeholder="City">
                 </div>
 
-                <div class="col-md-4 mb-3">
-                  <label class="sr-only">State</label>
-                  <select name="state" class="form-control">
-                    <option selected="true" disabled="disabled">State (All)</option>
-                    {% for key,value in state_choices.items %}
-                      <option value="{{ key }}">{{ value }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
               </div>
+              <!-- Form Row 1 End-->
               <!-- Form Row 2 -->
               <div class="form-row">
                 <div class="col-md-6 mb-3">
@@ -59,7 +52,22 @@
                   </select>
                 </div>
               </div>
+              <!-- Form Row 2 End -->
               <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+              {% else %}
+              <!-- test -->
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <button class="btn btn-secondary btn-block mt-5" type="submit">I'm Seller</button>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <button class="btn btn-secondary btn-block mt-5" type="submit">I'm Buyer</button>
+                </div>
+                </div>
+              <!-- test End -->
+              {% endif %}
+              
+              
             </form>
           </div>
         </div>
@@ -76,10 +84,9 @@
         {% if listings %}
           {% for listing in listings %}
             <!-- Listing 1 -->
-<<<<<<< HEAD
             <div class="col-md-6 col-lg-4 mb-4 my-title">
               <div class="card listing-preview">
-                <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
+                <img class="card-img-top my-card-img" src="{{ listing.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
                     <span class="badge badge-secondary text-white">{{ listing.price | intcomma }}MAD</span>
@@ -104,56 +111,16 @@
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
-                    <div class="col-8">
+                    <div class="col-12">
                       <i class="fas fa-user"></i> {{listing.seller }}</div>
-                      <div class="col-8">
+                      <div class="col-12">
                         <i class="fas fa-clock"></i> {{listing.date_posted | timesince }}</div>
                   </div>
                   <hr>
-                  <a href="{% url 'listing' listing.id %}" class="btn btn-secondary btn-block">BID NOW</a>
-=======
-            <div class="col-md-6 col-lg-4 mb-4">
-                  <div class="card listing-preview">
-                    <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" >
-                    <div class="card-img-overlay">
-                      <h2>
-                        <span class="badge badge-secondary text-white">{{ listing.price | intcomma}} MAD</span>
-                      </h2>
-                    </div>
-                    <div class="card-body">
-                      <div class="listing-heading text-center">
-                        <h4 class="text-primary">{{ listing.title }}</h4>
-                        <p>
-                          <i class="fas fa-map-marker text-secondary"></i>{{ listing.get_category_display }}</p>
-                      </div>
-                      <hr>
-                      <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                          <i class="fas fa-th-large"></i>City : {{ listing.city }}</div>
-                        <div class="col-6">
-                          <i class="fas fa-car"></i>Quantity : {{ listing.quantity }} TON</div>
-                      </div>
-                      <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                          <i class="fas fa-bed"></i>{{ listing.delivery }}</div>
-                        <div class="col-6">
-                          <i class="fas fa-bath"></i>ZipCode {{ listing.zipcode }}</div>
-                      </div>
-                      <hr>
-                      <div class="row py-2 text-secondary">
-                        <div class="col-12">
-                          <i class="fas fa-user"></i>{{ listing.seller }}</div>
-                      </div>
-                      <div class="row text-secondary pb-2">
-                        <div class="col-6">
-                          <i class="fas fa-clock"></i>{{ listing.date_posted | naturaltime }}</div>
-                      </div>
-                      <hr>
-                      <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">BID NOW</a>
-                    </div>
-                  </div>
->>>>>>> 10dc32963190410c25acae777489b90245a2044e
+                  <a href="{% url 'listing' listing.id %}" class="btn btn-secondary btn-block">BID</a>
                 </div>
+              </div>
+            </div>
           {% endfor %}
         {% else %}
           <div class="col-md-12">

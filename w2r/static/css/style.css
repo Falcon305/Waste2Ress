@@ -9,7 +9,14 @@ img {
 
 .logo {
   width: 80px; }
-
+  .my-card-img {
+    height: 15vh;
+}
+.my-footer{
+  right: 0;
+    bottom: 0;
+    left: 0;
+}
 .navbar {
   height: 70px;
   opacity: 0.9;
