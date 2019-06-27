@@ -96,7 +96,7 @@
         {% if listings %}
           {% for listing in listings %}
                    <!-- Listing 1 -->
-                <div class="col-md-6 col-lg-4 mb-4">
+                <div class="col-md-6 col-lg-4 mb-4 my-title">
                   <div class="card listing-preview">
                     <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" >
                     <div class="card-img-overlay">
@@ -108,32 +108,28 @@
                       <div class="listing-heading text-center">
                         <h4 class="text-primary">{{ listing.title }}</h4>
                         <p>
-                          <i class="fas fa-map-marker text-secondary"></i>{{ listing.get_category_display }}</p>
+                          <i class="fas fa-map-marker text-secondary"></i> {{ listing.get_category_display }}</p>
                       </div>
                       <hr>
                       <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                          <i class="fas fa-th-large"></i>City : {{ listing.city }}</div>
-                        <div class="col-6">
-                          <i class="fas fa-car"></i>Quantity : {{ listing.quantity }} TON</div>
-                      </div>
-                      <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                          <i class="fas fa-bed"></i>{{ listing.delivery }}</div>
-                        <div class="col-6">
-                          <i class="fas fa-bath"></i>ZipCode {{ listing.zipcode }}</div>
+                        <div class="col-8">
+                          <i class="fas fa-city"></i> City : {{ listing.city }}</div>
+                        <div class="col-8">
+                          <i class="fas fa-weight-hanging"></i> Quantity : {{ listing.quantity }} TON</div>
+                          <div class="col-8">
+                            <i class="fas fa-truck"></i> {{ listing.delivery }}</div>
+                          <div class="col-8">
+                            <i class="fas fa-map-marker-alt"></i> ZipCode {{ listing.zipcode }}</div>
                       </div>
                       <hr>
                       <div class="row py-2 text-secondary">
-                        <div class="col-12">
-                          <i class="fas fa-user"></i>{{ listing.seller }}</div>
-                      </div>
-                      <div class="row text-secondary pb-2">
-                        <div class="col-6">
-                          <i class="fas fa-clock"></i>{{ listing.date_posted | naturaltime }}</div>
+                        <div class="col-8">
+                          <i class="fas fa-user"></i> {{ listing.seller }}</div>
+                          <div class="col-8">
+                            <i class="fas fa-clock"></i> {{ listing.date_posted | naturaltime }}</div>
                       </div>
                       <hr>
-                      <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">BID NOW</a>
+                      <a href="{% url 'listing' listing.id %}" class="btn btn-secondary btn-block">BID NOW</a>
                     </div>
                   </div>
                 </div>
