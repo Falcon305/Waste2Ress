@@ -51,7 +51,7 @@
               {% if user.is_buyer %}
                 <a class="nav-link" href="{% url 'index' %}">Welcome {{ user.username }} </a>
               {% else %}
-                <a class="nav-link" href="{% url 'dashboard' %}">Welcome {{ user.username }} (Dashboard)</a>
+                <a class="nav-link" href="{% url 'create' %}">Welcome {{ user.username }} (Create Product)</a>
               {% endif %}
                
             </li>
