@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Sign up for a free account</h2>
+  <!-- <h2>Sign up for a free account</h2>
   <p class="lead">Select below the type of account you want to create</p>
   <a href="{% url 'buyer_register' %}" class="btn btn-student btn-lg" role="button">I'm a Buyer</a>
-  <a href="{% url 'seller_register' %}" class="btn btn-teacher btn-lg" role="button">I'm a Seller</a>
+  <a href="{% url 'seller_register' %}" class="btn btn-teacher btn-lg" role="button">I'm a Seller</a> -->
+
+  <section id="showcase">
+      <div class="container text-center ">
+        <div class="home-search p-5">
+          <div class="overlay p-5 rounded">
+            <h1 class="display-4 mb-4">
+                Sign up for a free account
+            </h1>
+            <div class="search">
+              {% if user.is_authenticated %}
+               <h2>Welcom to Waste to Ressources</h2>
+               {% else %}
+                <h2>Select below the type of account you want to create</h2>
+                <a href="{% url 'buyer_register' %}" class="btn btn-success btn-lg" role="button">I'm a Buyer</a>
+                <a href="{% url 'seller_register' %}" class="btn btn-success btn-lg" role="button">I'm a Seller</a>
+                <h2>You already have an account ?</h2>
+                <a href="{% url 'login' %}" class="btn btn-success btn-lg" role="button">LOGIN</a>
+                {% endif %}
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 {% endblock %}
