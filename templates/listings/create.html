@@ -1,87 +1,127 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<section id="login" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-secondary text-white">
+              <h4>
+                <i class="fas fa-folder-plus"></i> Create </h4>
+            </div>
+            <div class="card-body">
+            {% include 'partials/_alerts.html' %}
+            <!-- test -->
 {% if error %}
 {{ error }}
-<br />
-<br />
 {% endif %}
-
-<h1>Create</h1>
-
 <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
 {% csrf_token %}
-Title:
-<br />
-<input type="text" name="title" />
-<br />
-Description:
-<br />
-<input type="textbox" name="description" />
-<br />
+<div class="form-group">
+<label for="title">Title</label>
+<input type="text" class="form-control" name="title" />
+</div>
 
+<div class="form-group">
+<label for="description">Description</label>
+<textarea  class="form-control" name="description" > </textarea>
+</div>
 
-Main Image:
-<br />
-<input type="file" name="photo_main" />
-<br />
-Image 1:
-<br />
-<input type="file" name="photo_1" />
-<br />
-Image 2:
-<br />
-<input type="file" name="photo_2" />
-<br />
-Image 3:
-<br />
-<input type="file" name="photo_3" />
-<br />
-Image 4:
-<br />
-<input type="file" name="photo_4" />
-<br />
-Image 5:
-<br />
-<input type="file" name="photo_5" />
-<br />
-Image 6:
-<br />
-<input type="file" name="photo_6" />
-<br />
+<div class="form-group">
+<label for="photo_main" class="my-label bg-secondary main-pic">
+<input type="file" class="form-control-file my-file-input" name="photo_main" />
+<p class="file-return">Main Photo</p>
+<i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+<div class="container my-container" >
+<label for="photo_1" class="my-label bg-secondary mr-2">
+  <input type="file" class="form-control-file my-file-input" name="photo_1" />
+  <p class="file-return" >Image 1</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
 
-Price:
-<br />
-<input type="text" name="price" />
-<br />
-Quantity
-<br />
-<input type="text" name="quantity" />
-<br />
-Address
-<br />
-<input type="text" name="address" />
-<br />
-City
-<br />
-<input type="text" name="city" />
-<br />
-State
-<br />
-<input type="text" name="state" />
-<br />
-Zipcode
-<br />
-<input type="text" name="zipcode" />
-<br />
-Delivery
-<br />
-<input type="text" name="delivery" />
-<br />
-Category<span class="asteriskField">*</span> </label> <div class=""> <select name="category" class="select form-control" required="" id="id_category"> <option value="">---------</option> <option value="CW">Construction waste</option> <option value="ET">Electronics</option> <option value="GLS" selected="">Glass</option> <option value="HAZ">Hazardous</option> <option value="FER">Metals</option> <option value="HAZ">Hazardous</option> <option value="MWP">Mixed waste products</option> <option value="ORG">Organic</option> <option value="PAC">Paper and cardboard</option> <option value="MK">Plastics</option> <option value="RUB">Rubber</option> <option value="TOB">Textiles</option>
-<input class="btn btn-primary" type="submit" value="Add Product" />
+<label for="photo_2" class="my-label bg-secondary mr-2">
+  <input type="file" class="form-control-file my-file-input" name="photo_2" />
+  <p class="file-return" >Image 2</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+
+<label for="photo_3" class="my-label bg-secondary ">
+  <input type="file" class="form-control-file my-file-input" name="photo_3" />
+  <p class="file-return" >Image 3</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+</div>
+<div class="container my-container" >
+<label for="photo_4" class="my-label bg-secondary mr-2">
+  <input type="file" class="form-control-file my-file-input" name="photo_4" />
+  <p class="file-return" >Image 4</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+
+<label for="photo_5" class="my-label bg-secondary mr-2">
+  <input type="file" class="form-control-file my-file-input" name="photo_5" />
+  <p class="file-return" >Image 5</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+
+<label for="photo_6" class="my-label bg-secondary">
+  <input type="file" class="form-control-file my-file-input" name="photo_6" />
+  <p class="file-return" >Image 6</p>
+  <i class="fa fa-plus-square my-icon fa-2x"></i>
+</label>
+</div>
+
+</div>
+
+<div class="form-group">
+<label for="price">Price :</label>
+<input type="text" class="form-control" name="price" />
+</div>
+
+<div class="form-group">
+<label for="quantity">Quantity :</label>
+<input type="text" class="form-control" name="quantity" />
+</div>
+
+<div class="form-group">
+<label for="address">Address :</label>
+<input type="text" class="form-control" name="address" />
+</div>
+
+<div class="form-group">
+<label for="city">City :</label>
+<input type="text" class="form-control" name="city" />
+</div>
+
+<div class="form-group">
+<label for="state">State :</label>
+<input type="text" class="form-control" name="state" />
+</div>
+
+<div class="form-group">
+<label for="zipcode">Zipcode :</label>
+<input type="text" class="form-control" name="zipcode" />
+</div>
+
+<div class="form-group">
+<label for="delivery">Delivery :</label>
+<input type="text" class="form-control" name="delivery" />
+</div>
+
+<div class="form-group">
+<label for="category">Category :</label>
+<select name="category" class="select form-control" required="" id="id_category"> <option value="">---------</option> <option value="CW">Construction waste</option> <option value="ET">Electronics</option> <option value="GLS" selected="">Glass</option> <option value="HAZ">Hazardous</option> <option value="FER">Metals</option> <option value="HAZ">Hazardous</option> <option value="MWP">Mixed waste products</option> <option value="ORG">Organic</option> <option value="PAC">Paper and cardboard</option> <option value="MK">Plastics</option> <option value="RUB">Rubber</option> <option value="TOB">Textiles</option>
+</div>
+
+<input class="btn btn-secondary btn-block mt-3" type="submit" value="Add Product"/> 
 
 </form>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 {% endblock %}

@@ -196,3 +196,58 @@ img {
   box-shadow: none;
 }
 /* end of test */
+
+/* this is style for input files  */
+
+.my-file-input{
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.my-icon{
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+
+}
+.my-label{
+  width: 80px;
+  height: 80px;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 3%;
+  
+}
+.my-label:hover{
+  background-color: #30caa1af !important;
+}
+.my-label:hover > i{
+  border-radius: 10px 10px 1px 1px;
+  box-shadow: 5px 5px 15px gray;
+}
+.my-label > p{
+  font-size: 15px;
+  margin-bottom: 0px;
+  width: 100%;
+  height: 65%;
+}
+.main-pic{
+  display: block !important;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 15px;
+  width: 200px;
+  height: 80px;
+}
+
+.my-container{
+  margin: auto;
+  width: 60%;
+
+}
