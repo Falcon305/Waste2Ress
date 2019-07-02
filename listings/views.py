@@ -72,31 +72,6 @@ def search(request):
 
     return render(request, 'listings/search.html', context)
 
-'''@login_required
-@seller_required
-def create(request, template_name="listings/create.html'"):
-    form = ProductForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form = form.save(commit=False)
-        form.save()
-        return redirect('index')
-    return render(request, 'listings/create.html', {'form': form})'''
-
-
-'''@method_decorator([login_required, seller_required], name='dispatch')
-class ProductCreateView(CreateView):
-    model = Listing
-    fields = ('title', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6', 'description', 'quantity', 
-                'category', 'price', 'is_published', 'address', 'city', 'state', 'zipcode', 'delivery')
-    #form_class = ProductForm
-    #success_url = 'index'
-    template_name = 'listings/create.html'
-
-    def form_valid(self, form):
-            self.object = form.save(commit=False)
-            self.user = self.request.user
-            self.object.save()
-            return redirect('listings')'''
 
 @login_required
 @seller_required
@@ -128,3 +103,9 @@ def create(request):
             return render(request, 'listings/create.html', {'error': 'All Fields are required'})
     else :
         return render(request, 'listings/create.html')
+
+
+@login_required
+@buyer_required
+def bid(request, listing_id):
+    return

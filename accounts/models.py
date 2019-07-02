@@ -25,11 +25,15 @@ class Seller(models.Model):
 
 class Buyer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+	first_name = models.CharField(max_length=255)
+	email = models.EmailField()
+	last_name = models.CharField(max_length=255)
 	cellphone = models.CharField(max_length=14)
 	address = models.CharField(max_length=255)
 	town = models.CharField(max_length=45)
 	post_code = models.CharField(max_length=45)
 	country = models.CharField(max_length=45)
 	photo = models.ImageField(upload_to='photos/%Y/%m/%d')
+	join_date = models.DateTimeField(auto_now_add=True, blank=True)
 	def __str__(self):
 		return self.user.username

@@ -71,8 +71,10 @@ class Listing(models.Model):
 class Auction(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING)
     number_of_bids = models.IntegerField()
-    time_starting = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     time_ending = models.DateTimeField()
+    staring_price = models.IntegerField(default=0)
 
 class Watchlist(models.Model):
     user_id = models.ForeignKey(Buyer, on_delete=models.CASCADE)
