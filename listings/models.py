@@ -41,6 +41,14 @@ class Listing(models.Model):
         ('RUB', 'Rubber'),
         ('TOB', 'Textiles')
     )
+
+    LIFECYCLES_ = (
+        ('A', 'Active'),
+        ('B', 'Banned'),
+        ('D', 'Due'),
+        ('X', 'Adjudicated'),
+    )
+
     title = models.CharField(max_length=255)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True)
@@ -64,17 +72,27 @@ class Listing(models.Model):
     state = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=255 )
     delivery = models.CharField(max_length=255)
+    num_bids = models.IntegerField(default=0)
+    deadline = models.DateTimeField(auto_now_add=True)
+    lifecycle = models.CharField(max_length=1, choices=LIFECYCLES_)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
+        return str(self.id)
+    
+    def name(self):
         return self.title
         
-class Auction(models.Model):
+'''class Auction(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING)
     number_of_bids = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     time_ending = models.DateTimeField()
     staring_price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.id)
 
 class Watchlist(models.Model):
     user_id = models.ForeignKey(Buyer, on_delete=models.CASCADE)
@@ -89,4 +107,4 @@ class Chat(models.Model):
     auction_id = models.ForeignKey(Auction, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
-    time_sent = models.DateTimeField()
+    time_sent = models.DateTimeField()'''

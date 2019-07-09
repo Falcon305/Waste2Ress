@@ -9,6 +9,11 @@ from django.utils import timezone
 from .forms import ProductForm
 from django.views.generic.edit import FormView, CreateView
 from django.utils.decorators import method_decorator
+from .models import Listing
+from .serializers import ProductSerializer
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages, auth
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -81,7 +86,6 @@ def create(request):
             product = Listing()
             product.title = request.POST['title']
             product.photo_main = request.FILES['photo_main']
-            product.photo_1 = request.FILES['photo_1']
             product.photo_2 = request.FILES['photo_2']
             product.photo_3 = request.FILES['photo_3']
             product.photo_4 = request.FILES['photo_4']
@@ -95,17 +99,32 @@ def create(request):
             product.address = request.POST['address']
             product.delivery = request.POST['delivery']
             product.price = request.POST['price']
+            
             product.pub_date = timezone.datetime.now()
             product.seller = request.user
             product.save()
+            messages.success(request, 'You are now registered and can log in')
             return redirect('listings')
         else :
-            return render(request, 'listings/create.html', {'error': 'All Fields are required'})
+            messages.error(request, 'Fill in all the requerd Fields')
+            return render(request, 'listings/create.html')
+            
     else :
         return render(request, 'listings/create.html')
 
 
-@login_required
+'''@login_required
 @buyer_required
-def bid(request, listing_id):
-    return
+def bid(request, bid_id):
+    bid =get_object_or_404(Bid, pk=bid_id)
+    return render(request, 'listings/bid.html')'''
+
+
+def get_rest_list(request):
+    """
+    Returns Json list of all restaurants
+    """
+    if request.method == "GET":
+        rest_list = Listing.objects.order_by('-date_posted')
+        serializer = ProductSerializer(rest_list, many=True)
+        return JsonResponse(serializer.data, safe=False)

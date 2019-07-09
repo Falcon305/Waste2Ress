@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Listing, Auction, Watchlist, Chat, Bid
+from .models import Listing
 # Register your models here.
 
 class ListingAdmin(admin.ModelAdmin):
@@ -11,8 +11,8 @@ class ListingAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(Listing, ListingAdmin)
-admin.site.register(Auction)
+'''admin.site.register(Auction)
 admin.site.register(Watchlist)
 admin.site.register(Chat)
-admin.site.register(Bid)
+admin.site.register(Bid)'''
 

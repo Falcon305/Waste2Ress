@@ -1,7 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.html import escape, mark_safe
-
+#from listings.models import Listing
+#from listings.models import Auction
 
 class User(AbstractUser):
     is_buyer = models.BooleanField(default=False)
@@ -35,5 +36,8 @@ class Buyer(models.Model):
 	country = models.CharField(max_length=45)
 	photo = models.ImageField(upload_to='photos/%Y/%m/%d')
 	join_date = models.DateTimeField(auto_now_add=True, blank=True)
+	#number_of_bids = models.IntegerField(_(""))
+	#auctions_list = models.ManyToManyField("listings.Auction", blank=True)
+	
 	def __str__(self):
 		return self.user.username

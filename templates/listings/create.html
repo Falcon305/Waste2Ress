@@ -42,7 +42,7 @@
 </label>
 
 <label for="photo_2" class="my-label bg-secondary mr-2">
-  <input type="file" class="form-control-file my-file-input" name="photo_2" />
+  <input type="file" class="form-control-file my-file-input" name="photo_2"/>
   <p class="file-return" >Image 2</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
@@ -114,9 +114,20 @@
 <label for="category">Category :</label>
 <select name="category" class="select form-control" required="" id="id_category"> <option value="">---------</option> <option value="CW">Construction waste</option> <option value="ET">Electronics</option> <option value="GLS" selected="">Glass</option> <option value="HAZ">Hazardous</option> <option value="FER">Metals</option> <option value="HAZ">Hazardous</option> <option value="MWP">Mixed waste products</option> <option value="ORG">Organic</option> <option value="PAC">Paper and cardboard</option> <option value="MK">Plastics</option> <option value="RUB">Rubber</option> <option value="TOB">Textiles</option>
 </div>
+<br/>
 
+<div class="form-group" id="datetimepicker1" data-target-input="nearest">
+      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+      <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
+    </div>
 <input class="btn btn-secondary btn-block mt-3" type="submit" value="Add Product"/> 
-
+<script>
+      $(function () {
+        $("#datetimepicker1").datetimepicker();
+      });
+    </script>
 </form>
 </div>
 </div>
