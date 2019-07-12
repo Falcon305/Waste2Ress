@@ -12,7 +12,11 @@ class Bid(models.Model):
     product = models.ForeignKey(Listing, on_delete=models.CASCADE)
     bid_time = models.DateTimeField(auto_now_add=True, blank=True)
     amount = models.FloatField()
-    status = models.CharField(max_length=1, choices=STATUS_)
+    status = models.CharField(max_length=1, choices=STATUS_, blank=True)
+    
+
+    def __str___(self):
+        return self.id
 
 '''class P_History(models.Model):
     product = models.ForeignKey(Product)

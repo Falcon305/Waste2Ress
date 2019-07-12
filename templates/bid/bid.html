@@ -4,8 +4,14 @@
 {% block content %}
 
 </form>
-
-    <form action="{% url 'bid' %}" method="POST">
+{{ listing.title }}
+<br />
+{{ listing.id }}
+<br />
+{{ listing.price }}
+<br />
+{% include 'partials/_alerts.html' %}
+<form action="{% url 'save_bid' listing.id %}" method="POST">
     {% csrf_token %}
     <input type="search" title='am' id='am' name='am' placeholder="amount">
     <input type="submit" value="Bid">

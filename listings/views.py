@@ -14,6 +14,14 @@ from .serializers import ProductSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages, auth
 from django.http import JsonResponse
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from rest_framework.decorators import api_view
+from django.views.generic import UpdateView
+
 
 # Create your views here.
 
@@ -100,7 +108,7 @@ def create(request):
             product.delivery = request.POST['delivery']
             product.price = request.POST['price']
             
-            product.pub_date = timezone.datetime.now()
+            
             product.seller = request.user
             product.save()
             messages.success(request, 'You are now registered and can log in')
@@ -112,14 +120,20 @@ def create(request):
     else :
         return render(request, 'listings/create.html')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(seller_required, name='dispatch')
+class ListingUpdateView(UpdateView):
+    model = Listing
+    fields = ['title', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6', 'description', 'quantity', 
+                'category', 'price', 'is_published', 'address', 'city', 'state', 'zipcode', 'delivery']
+    def form_valid(self, form):
+        form.instance.seller = self.request.user
+        return super().form_valid(form)
+    
 
-'''@login_required
-@buyer_required
-def bid(request, bid_id):
-    bid =get_object_or_404(Bid, pk=bid_id)
-    return render(request, 'listings/bid.html')'''
 
-
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
 def get_rest_list(request):
     """
     Returns Json list of all restaurants
@@ -128,3 +142,10 @@ def get_rest_list(request):
         rest_list = Listing.objects.order_by('-date_posted')
         serializer = ProductSerializer(rest_list, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+class ProductSerializerView(APIView):
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user, status=Invoice.SENT)
+        return Response(status=status.HTTP_201_CREATED)
