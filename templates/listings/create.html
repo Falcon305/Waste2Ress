@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="hero-wrap hero-wrap-0" style="background-image: url({% static '/images/create.jpg' %}); background-size: cover;">
+  <div class="overlay"></div>
+  <div class="circle-bg"></div>
+  <div class="circle-bg-2"></div>
+  <div class="container-fluid">
+    <div class="row no-gutters d-flex slider-text-0 slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'index' %}">Home</a></span> <span><a href="{% url 'listings' %}">Listings</a></span></p>
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">CREATE</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section id="login" class="bg-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card">
-            <div class="card-header bg-secondary text-white">
-              <h4>
-                <i class="fas fa-folder-plus"></i> Create </h4>
-            </div>
-            <div class="card-body">
+    <div class="container my-container">
+              <h4 class="text-center mb-4 text-primary">
+                <i class="fa fa-folder-plus"></i> Create </h4>
+
+            
             {% include 'partials/_alerts.html' %}
             <!-- test -->
 {% if error %}
@@ -18,110 +29,104 @@
 {% endif %}
 <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
 {% csrf_token %}
-<div class="form-group">
-<label for="title">Title</label>
-<input type="text" class="form-control" name="title" />
+<div class="row">
+<div class="form-group col">
+<input type="text" class="form-control" name="title" placeholder="Title" />
 </div>
 
-<div class="form-group">
-<label for="description">Description</label>
-<textarea  class="form-control" name="description" > </textarea>
-</div>
+<div class="form-group col">
+  <select name="category" class="select form-control" required="" id="id_category"> <option value="">---------</option> <option value="CW">Construction waste</option> <option value="ET">Electronics</option> <option value="GLS" selected="">Glass</option> <option value="HAZ">Hazardous</option> <option value="FER">Metals</option> <option value="HAZ">Hazardous</option> <option value="MWP">Mixed waste products</option> <option value="ORG">Organic</option> <option value="PAC">Paper and cardboard</option> <option value="MK">Plastics</option> <option value="RUB">Rubber</option> <option value="TOB">Textiles</option>
+  </select>
+  </div>
+
+  <div class="form-group col">
+    <input type="text" class="form-control" placeholder="Quantity" name="quantity" />
+    </div>
+
+  <div class="form-group col">
+    <input type="text" class="form-control" placeholder="Price" name="price" />
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+    <input type="text" class="form-control" placeholder="Address" name="address" />
+    </div>
+    
+    <div class="form-group col">
+    <input type="text" class="form-control" placeholder="City" name="city" />
+    </div>
+    
+    
+    <div class="form-group col">
+    <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" />
+    </div>
+    
+    <div class="form-group col">
+    <input type="text" class="form-control" placeholder="Delivery" name="delivery" />
+    </div>
+    </div>
 
 <div class="form-group">
-<label for="photo_main" class="my-label bg-secondary main-pic">
+  <div class="row">
+<label for="photo_main" class="my-label  main-pic ftco-animate fadeInUp ftco-animated">
 <input type="file" class="form-control-file my-file-input" name="photo_main" />
 <p class="file-return">Main Photo</p>
 <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
-<div class="container my-container" >
-<label for="photo_1" class="my-label bg-secondary mr-2">
+</div>
+<div class="row">
+<label for="photo_1" class="my-label  mr-4 col">
   <input type="file" class="form-control-file my-file-input" name="photo_1" />
   <p class="file-return" >Image 1</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
 
-<label for="photo_2" class="my-label bg-secondary mr-2">
+<label for="photo_2" class="my-label  mr-4 col">
   <input type="file" class="form-control-file my-file-input" name="photo_2" />
   <p class="file-return" >Image 2</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
 
-<label for="photo_3" class="my-label bg-secondary ">
+<label for="photo_3" class="my-label   mr-4 col">
   <input type="file" class="form-control-file my-file-input" name="photo_3" />
   <p class="file-return" >Image 3</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
-</div>
-<div class="container my-container" >
-<label for="photo_4" class="my-label bg-secondary mr-2">
+
+<label for="photo_4" class="my-label  mr-4 col">
   <input type="file" class="form-control-file my-file-input" name="photo_4" />
   <p class="file-return" >Image 4</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
 
-<label for="photo_5" class="my-label bg-secondary mr-2">
+<label for="photo_5" class="my-label  mr-4 col">
   <input type="file" class="form-control-file my-file-input" name="photo_5" />
   <p class="file-return" >Image 5</p>
   <i class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
 
-<label for="photo_6" class="my-label bg-secondary">
+<label for="photo_6" class="my-label   mr-0 col">
   <input type="file" class="form-control-file my-file-input" name="photo_6" />
   <p class="file-return" >Image 6</p>
-  <i class="fa fa-plus-square my-icon fa-2x"></i>
+  <i  class="fa fa-plus-square my-icon fa-2x"></i>
 </label>
 </div>
-
 </div>
 
 <div class="form-group">
-<label for="price">Price :</label>
-<input type="text" class="form-control" name="price" />
-</div>
+  <textarea  class="form-control my-textarea" placeholder="Description" name="description" ></textarea>
+  </div>
 
-<div class="form-group">
-<label for="quantity">Quantity :</label>
-<input type="text" class="form-control" name="quantity" />
-</div>
 
-<div class="form-group">
-<label for="address">Address :</label>
-<input type="text" class="form-control" name="address" />
-</div>
 
-<div class="form-group">
-<label for="city">City :</label>
-<input type="text" class="form-control" name="city" />
-</div>
 
-<div class="form-group">
-<label for="state">State :</label>
-<input type="text" class="form-control" name="state" />
-</div>
 
-<div class="form-group">
-<label for="zipcode">Zipcode :</label>
-<input type="text" class="form-control" name="zipcode" />
-</div>
-
-<div class="form-group">
-<label for="delivery">Delivery :</label>
-<input type="text" class="form-control" name="delivery" />
-</div>
-
-<div class="form-group">
-<label for="category">Category :</label>
-<select name="category" class="select form-control" required="" id="id_category"> <option value="">---------</option> <option value="CW">Construction waste</option> <option value="ET">Electronics</option> <option value="GLS" selected="">Glass</option> <option value="HAZ">Hazardous</option> <option value="FER">Metals</option> <option value="HAZ">Hazardous</option> <option value="MWP">Mixed waste products</option> <option value="ORG">Organic</option> <option value="PAC">Paper and cardboard</option> <option value="MK">Plastics</option> <option value="RUB">Rubber</option> <option value="TOB">Textiles</option>
-</div>
-
-<input class="btn btn-secondary btn-block mt-3" type="submit" value="Add Product"/> 
+<input class="btn btn-primary py-3 px-5 btn-block mt-3" type="submit" value="Add Product"/> 
 
 </form>
-</div>
-</div>
-</div>
-</div>
+
 </div>
 </section>
 {% endblock %}

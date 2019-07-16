@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
+from crispy_forms.helper import FormHelper
 from django.forms.utils import ValidationError
 
 from accounts.models import User, Buyer, Seller
@@ -8,13 +9,23 @@ from accounts.models import User, Buyer, Seller
 
 class SellerSignUpForm(UserCreationForm):
     email = forms.EmailField()
-    first_name = forms.CharField(max_length=255 , required=True)
-    last_name = forms.CharField(max_length=255)
-    cellphone = forms.CharField(max_length=14)
-    address = forms.CharField(max_length=255)
-    town = forms.CharField(max_length=45)
-    post_code = forms.CharField(max_length=45)
-    country = forms.CharField(max_length=45)
+    first_name = forms.CharField(max_length=255 , required=True, widget=forms.TextInput(attrs={'placeholder': 'Fisrt Name', 'class':' form-control login-input'}))
+    last_name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class':' form-control login-input'}))
+    cellphone = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Phone Number', 'class':' form-control login-input'}))
+    address = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Address', 'class':' form-control login-input'}))
+    town = forms.CharField(max_length=45, widget=forms.TextInput(attrs={'placeholder': 'City', 'class':' form-control login-input'}))
+    post_code = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Zip Code', 'class':' form-control login-input'}))
+    country = forms.CharField(max_length=45, widget=forms.TextInput(attrs={'placeholder': 'Country', 'class':' form-control login-input'}))
+    def __init__(self, *args, **kwargs):
+        super(SellerSignUpForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username', 'class':' form-control login-input'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password', 'class':' form-control login-input'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Password Confirmation', 'class':' form-control login-input'})
+        self.fields['email'].widget.attrs.update({'placeholder': 'email', 'class':' form-control login-input'})
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
     #photo = forms.ImageField()
     class Meta(UserCreationForm.Meta):
         model = User
@@ -43,15 +54,27 @@ class SellerSignUpForm(UserCreationForm):
 
 class BuyerSignUpForm(UserCreationForm):
     email = forms.EmailField()
-    first_name = forms.CharField(max_length=255 , required=True)
-    last_name = forms.CharField(max_length=255)
-    cellphone = forms.CharField(max_length=14)
-    address = forms.CharField(max_length=255)
-    town = forms.CharField(max_length=45)
-    post_code = forms.CharField(max_length=45)
-    country = forms.CharField(max_length=45)
+    first_name = forms.CharField(max_length=255 , required=True , widget=forms.TextInput(attrs={'placeholder': 'Fisrt Name', 'class':' form-control login-input'}))
+    last_name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class':' form-control login-input'}))
+    cellphone = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Phone Number', 'class':' form-control login-input'}))
+    address = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Address', 'class':' form-control login-input'}))
+    town = forms.CharField(max_length=45, widget=forms.TextInput(attrs={'placeholder': 'City', 'class':' form-control login-input'}))
+    post_code = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Zip Code', 'class':' form-control login-input'}))
+    country = forms.CharField(max_length=45, widget=forms.TextInput(attrs={'placeholder': 'Country', 'class':' form-control login-input'}))
+
+    def __init__(self, *args, **kwargs):
+        super(BuyerSignUpForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username', 'class':' form-control login-input'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password', 'class':' form-control login-input'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Password Confirmation', 'class':' form-control login-input'})
+        self.fields['email'].widget.attrs.update({'placeholder': 'email', 'class':' form-control login-input'})
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
     class Meta(UserCreationForm.Meta):
         model = User
+
 
     @transaction.atomic
     def save(self):

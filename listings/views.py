@@ -9,6 +9,7 @@ from django.utils import timezone
 from .forms import ProductForm
 from django.views.generic.edit import FormView, CreateView
 from django.utils.decorators import method_decorator
+from django.contrib import messages
 
 # Create your views here.
 
@@ -100,7 +101,8 @@ def create(request):
             product.save()
             return redirect('listings')
         else :
-            return render(request, 'listings/create.html', {'error': 'All Fields are required'})
+            messages.error(request, 'All Fields are required')
+            return render(request, 'listings/create.html')
     else :
         return render(request, 'listings/create.html')
 

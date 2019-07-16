@@ -1,0 +1,138 @@
+
+.login-input , .sign-up-section .form-control{
+    border: none;
+    background-color: #fff !important;
+    color: #81919a !important;
+    font-size: 85%;
+    display: inline;
+    height: 52px !important;
+    width: 80%;
+    padding-left: 35px;
+    border-radius: 3px;
+   
+}
+
+.login-input:-webkit-autofill,
+.login-input:-webkit-autofill:hover,
+.login-input:-webkit-autofill:focus,
+.login-input:-webkit-autofill:active
+{
+
+}
+.login-input::placeholder{
+    font-size: 13px;
+}
+.login-icon
+{
+    position: absolute;
+    font-size: 25px;
+    padding-left: 5px;
+    top: 13px;
+    color: #00c0cb  !important;
+}
+.login-from-item
+{
+    position: relative;
+}
+.my-form{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.show-case-area
+{
+    padding: 0px;
+    height: 100%;
+
+}
+.green-part
+{
+    color: #fff !important;
+    background: linear-gradient(135deg, #2ebdc4 0%, #68e5b2 100%);
+    padding-top: 35%;
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+}
+.one-forth > .bread , .login-title{
+    font-weight: 500 !important;
+}
+.login-form-col
+{
+    padding-top: 10%;
+}
+.login-container
+{
+    width: 80vw;
+    height: 25vw;
+    border: 1px solid rgb(243, 243, 243);
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    border-radius: 5px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 8px 6px -6px gray; 
+	   -moz-box-shadow: 0 8px 6px -6px gray;
+	        box-shadow: 0 10px 15px -10px gray;
+}
+.login-container > .row
+{
+    height: 100%;
+}
+.login-title
+{
+    color:#13b9ad;
+}
+
+.my-btn-primary
+{
+
+    background: transparent;
+    border: 2px solid #daf6f8;
+    color: #daf6f8;
+}
+.my-btn-primary:hover{
+    background: #daf6f8;
+    border: 2px solid #daf6f8;
+    color: #24bdc9;
+    transition: all 700ms;
+}
+.social-media-login:hover > span
+{
+    color: #24bdc9 !important;
+    font-size: 40px !important;
+    transition: all 700ms;
+}
+.subtitle-login
+{
+    font-size: 15px;
+}
+.my-form > .btn-lg
+{
+    width: 50%;
+}
+.login-form-col li a{
+    height: 50px;
+    width: 50px;
+    display: block;
+    float: left;
+    background: rgba(69, 206, 193, 0.16);
+    border-radius: 50%;
+    position: relative;
+}
+.sign-up-section .login-input ,.sign-up-section .form-control
+{
+    padding-left: 5px !important;
+    height: 40px !important;
+}
+.sign-up-section .login-input::placeholder
+{
+    font-size: 11px;
+}
+.sign-up-section .login-from-item
+{
+    padding: 0px !important;
+}
+.sign-up-section  .login-container
+{
+    height: 30vw;
+}

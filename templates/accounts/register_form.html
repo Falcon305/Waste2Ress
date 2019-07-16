@@ -1,9 +1,95 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <div class="row">
+<div class="hero-wrap hero-wrap-0" style="background-image: url({% static '/images/create.jpg' %}); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+  <div class="overlay"></div>
+  <div class="circle-bg"></div>
+  <div class="circle-bg-2"></div>
+  <div class="container-fluid">
+    <div class="row no-gutters d-flex slider-text slider-text-0 align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'index' %}">Home</a></span></p>
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Sign Up</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="login" class=" py-2 sign-up-section">
+  <div class="container login-container bg-light">
+      <div class="row login-row">
+          
+        <div class=" col-7 text-center login-form-col">
+            <h1 class="mb-4 login-title" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Create Account</h1>
+            <div class=" text-center">
+       
+              <ul class="ftco-footer-social list-unstyled">
+                <li class="ftco-animate"><a href="#" class="social-media-login"><span class="fab fa-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#" class="social-media-login" ><span class="fab fa-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#" class="social-media-login" ><span class=" fab fa-instagram"></span></a></li>
+              </ul>
+            </div>
+            <p class="mb-5 subtitle-login"> Or Use Your Email For Registration</p>
+            {% include 'partials/_alerts.html' %}
+            <form method="post" novalidate>
+              {% csrf_token %}
+              <div class="row">
+                <div class="form-group login-from-item col">
+                  {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group login-from-item col">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+                <div class="form-group login-from-item col">
+                    {{ form.town|as_crispy_field }}
+                </div>
+                <div class="form-group login-from-item col">
+                    {{ form.address|as_crispy_field }}
+                </div>
+              </div>
+              <div class="row">
+                  <div class="form-group login-from-item col">
+                      {{ form.cellphone|as_crispy_field }}
+                  </div>
+                  <div class="form-group login-from-item col">
+                      {{ form.post_code|as_crispy_field }}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group login-from-item col">
+                      {{ form.username|as_crispy_field }}
+                  </div>
+                  <div class="form-group login-from-item col">
+                      {{ form.email|as_crispy_field }}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group login-from-item col">
+                      {{ form.password1|as_crispy_field }}
+                  </div>
+                  <div class="form-group login-from-item col">
+                      {{ form.password2|as_crispy_field }}
+                  </div>
+              </div>
+                <input type="submit" value="Login" class="btn btn-primary btn-lg">
+              </form>
+
+        </div>
+        <div class="col text-center show-case-area" style="background-image: url({% static '/images/show-case.jpg' %}); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+          <div class="container green-part">
+            <div class="one-forth pr-md-4 ftco-animate align-self-md-center" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-5 text-white bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Welcome Back!</h1>
+                <p class="mb-md-5 mb-sm-3 subtitle-login" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">A small river named Duden flows by their place and supplies it with the necessary regelialia. Already Have An Account?</p>
+                <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> <a href="{% url 'login' %}" class="btn my-btn-primary px-4 py-3">Log In</a></p>
+              </div>
+         </div>
+      </div>
+  </div>
+</div>
+  </section>
+  <!-- <div class="row">
     <div class="col-md-6 mx-auto">
         <div class="card mt-5 mb-5">
             <div class="card-header bg-secondary text-white">
@@ -20,5 +106,5 @@
                 </div>
             </div>
     </div>
-  </div>
+  </div> -->
 {% endblock %}
