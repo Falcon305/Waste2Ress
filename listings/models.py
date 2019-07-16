@@ -82,6 +82,9 @@ class Listing(models.Model):
     
     def name(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('listing', kwargs={'pk': self.pk})
         
 '''class Auction(models.Model):
     listing_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING)

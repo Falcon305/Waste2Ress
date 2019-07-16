@@ -20,7 +20,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from rest_framework.decorators import api_view
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 
 
 # Create your views here.
@@ -37,8 +37,10 @@ def index(request):
 
 def listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
+    # seller = get_object_or_404(Seller, first_name=first_name)
     context = {
-        'listing':listing
+        'listing':listing,
+        # 'seller': seller
     }
     return render(request, 'listings/listing.html', context)
 
@@ -120,15 +122,47 @@ def create(request):
     else :
         return render(request, 'listings/create.html')
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(seller_required, name='dispatch')
-class ListingUpdateView(UpdateView):
-    model = Listing
-    fields = ['title', 'photo_main', 'photo_1', 'photo_2', 'photo_3', 'photo_4', 'photo_5', 'photo_6', 'description', 'quantity', 
-                'category', 'price', 'is_published', 'address', 'city', 'state', 'zipcode', 'delivery']
-    def form_valid(self, form):
-        form.instance.seller = self.request.user
-        return super().form_valid(form)
+# @method_decorator(login_required, name='dispatch')
+# @method_decorator(seller_required, name='dispatch')
+# class ListingDeleteView(DeleteView):
+#     model = Listing
+#     success_url = '/'
+#     template_name = 'listings/listing_confirm_delete.html'
+#     def test_func(self):
+#         listing = self.get_object()
+#         if self.request.user == listing.seller:
+#             return True
+#         return False
+
+
+@login_required
+@seller_required
+def listing_delete(request, pk):
+    template = 'listings/listing_confirm_delete.html'
+    listing = get_object_or_404(Listing, pk=pk)
+    if request.user == listing.seller:
+        listing.delete()
+        return redirect('listings')
+    context = {'listing': listing}
+    return render(request, template, context)
+
+@login_required
+@seller_required
+def listing_update(request, pk):
+    instance = get_object_or_404(Listing, pk=pk)
+    form = ProductForm(request.POST or None, request.FILES or None, instance=instance)
+    if request.user == instance.seller:
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            messages.success(request, 'Your Product has been updated successfully')
+            return redirect('listings')
+    context = {
+        'title': instance.title,
+        'listing': instance,
+        'form': form,
+    }
+    return render(request, 'listings/update.html', context)    
     
 
 

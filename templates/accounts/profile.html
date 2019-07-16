@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card mt-5 mb-5">
+            <div class="card-header bg-secondary text-white">
+              <h4>
+                <i class="fas fa-user-plus"></i> {{ seller.first_name }}</h4>
+            </div>
+            <div class="card-body text-secondary">
+                  <form method="post" novalidate>
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    First Name : {{ seller.first_name }}<br />
+                    Last Name : {{ seller.last_name }}<br />
+                    Email : {{ seller.email }}<br />
+                    Cellphone : {{ seller.cellphone }}<br />
+                    Addresse : {{ seller.address }}<br />
+                    Town : {{ seller.town }}<br />
+                    Postal Code : {{ seller.post_code }}<br />
+                    Country : {{ seller.country }}<br />
+                    Join Date : {{ seller.join_date }}<br />
+                   {% comment %} <button type="submit" class="btn btn-success btn-block">Sign up</button> {% endcomment %}
+                  </form>
+                </div>
+            </div>
+    </div>
+  </div>
+{% endblock %}

@@ -22,8 +22,7 @@ class Seller(models.Model):
 	is_mvp = models.BooleanField(default=False)
 	join_date = models.DateTimeField(auto_now_add=True, blank=True)
 	def __str__(self):
-		return self.user.username
-
+		return self.first_name
 class Buyer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	first_name = models.CharField(max_length=255)

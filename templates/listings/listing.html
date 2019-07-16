@@ -144,6 +144,7 @@
           </div>
 
           <!-- Description -->
+           {% if user.is_authenticated %}
           <div class="card-body text-center row mb-5 bg-se">
             <div class="col-md-12">
               {{ listing.description }}
@@ -154,15 +155,45 @@
           <div class="card mb-3">
             <img class="card-img-top" src="" alt="Seller of the month">
             <div class="card-body text-center">
-              <h5 class="card-title">Seller </h5>
-              <h6 class="text-secondary">{{ listing.seller.first_name }}</h6>
+              <h5 class="card-title">Seller</h5>
+              <a href="{% url 'profile' slug=request.user.id %}"><h6 class="text-secondary">{{ listing.seller }}</h6></a>
             </div>
           </div>
+          {% if user.is_buyer %}
           <a href="{% url 'bid' listing.id %}" class="btn-secondary btn-block btn-lg" role="button" aria-pressed="true" style="text-align: center;" >Bid Now</a>
+          {% endif %}
+          {% if listing.seller == user %}
+          <div>
+            <a class="btn btn-danger btn-lg mt-1 mb-1" onclick="return confirm('Are you sure you want to delete this?')" href="{% url 'delete' listing.id %}">Delete</a>
+            {% comment %} <a class="btn btn-danger btn-lg mt-1 mb-1" onclick="return JSalert()" href="">dDelete</a> {% endcomment %}
+            <a class="btn btn-secondary btn-lg mt-1 mb-1" href="{% url 'update' listing.id %}">Update</a>
+          </div>
+        {% endif %}
         </div>
       </div>
     </div>
+  {% endif %}
+    
   </section>
-
+{% comment %} <script type="text/javascript">
+        function JSalert(){
+          swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your imaginary file is safe!");
+  }
+});
+        }
+</script> {% endcomment %}
 
 {% endblock %}

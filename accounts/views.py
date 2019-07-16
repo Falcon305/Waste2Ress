@@ -8,12 +8,18 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView
 from .decorators import seller_required, buyer_required
 from .forms import SellerSignUpForm, BuyerSignUpForm
 from .models import Seller, Buyer, User
 from django.contrib import messages, auth
-
+from django.http import HttpResponseRedirect
+from rest_framework.decorators import api_view
+from rest_framework.decorators import permission_classes
+from .serializers import *
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework import status
 
 class SignUpView(TemplateView):
     template_name = 'accounts/register.html'
@@ -61,3 +67,24 @@ class SellerSignUpView(CreateView):
 @seller_required
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+@method_decorator(login_required, name='dispatch')
+class SellerProfileView(DetailView):
+    model = Seller
+    template_name = 'accounts/profile.html'
+    slug_field = "user_id"
+    def get_object(self, queryset=None):
+            user = super(SellerProfileView, self).get_object(queryset)
+            Seller.objects.get_or_create(user=user)
+            return user
+
+
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def create_user_seller(request):
+    serialized = UserSerializer(data=request.data)
+    if serialized.is_valid():
+        serialized.save()
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
