@@ -33,15 +33,11 @@
         active
         {% endif %}
         "><a href="{% url 'listings' %}" class="nav-link">Listings</a></li>
-        {% if user.is_buyer == false %}
-        <li class="nav-item
-        {% if 'create' in request.path %}
-        active
-        {% endif %}
-        "><a href="{% url 'create' %}" class="nav-link">Create Auction</a></li>
-        {% endif %}
+       
         <li class="nav-item"> <a href="#" class="nav-link"> Welcome {{ user.username }}</a></li>
-        
+         {% if user.is_seller == True %}
+        <li class="nav-item cta"><a href="{% url 'create' %}" class="nav-link"><span>Create Product</span></a></li>
+        {% endif %}
         <li class="nav-item"> <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Log Out<form action="{% url 'logout' %}" method="POST" id="logout">
             {% csrf_token %}
             <input type="hidden">
@@ -49,7 +45,7 @@
 
           
           {% else %}
-        <li class="nav-item cta"><a href="{% url 'login' %}" class="nav-link"><span>Get started</span></a></li>
+        <li class="nav-item cta"><a href="{% url 'login' %}" class="nav-link"><span>Login</span></a></li>
         {% endif %}
       </ul>
     </div>
