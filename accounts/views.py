@@ -72,7 +72,7 @@ def dashboard(request):
 class SellerProfileView(DetailView):
     model = Seller
     template_name = 'accounts/profile.html'
-    slug_field = "user_id"
+    slug_field = "first_name"
     def get_object(self, queryset=None):
             user = super(SellerProfileView, self).get_object(queryset)
             Seller.objects.get_or_create(user=user)

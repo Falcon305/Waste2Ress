@@ -156,7 +156,7 @@
             <img class="card-img-top" src="" alt="Seller of the month">
             <div class="card-body text-center">
               <h5 class="card-title">Seller</h5>
-              <a href="{% url 'profile' slug=request.user.id %}"><h6 class="text-secondary">{{ listing.seller }}</h6></a>
+              <a href="{% url 'profile' slug=request.user.id %}"><h6 class="text-secondary">{{ listing.seller.first_name }}</h6></a>
             </div>
           </div>
           {% if user.is_buyer %}
