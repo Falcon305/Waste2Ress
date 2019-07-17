@@ -1,94 +1,58 @@
 {% load static %}
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top text-white">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'index' %}">
-        <img src="{% static 'img/logo.png' %}" class="logo" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
-          <li
-            {% if '/' == request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-          </li>
-          <li
-            {% if 'about' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-          </li>
-          <li
-            {% if 'listings' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-          >
-            <a class="nav-link" href="{% url 'listings' %}">Featured Listings</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <p> W2T</p>
+      <!-- <img style="width: 5vw; " src="{% static 'images/logo.png' %}" /> -->
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+    </button>
 
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-            <li
-            {% if 'dashboard' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              {% if user.is_buyer %}
-                <a class="nav-link" href="{% url 'index' %}">Welcome {{ user.username }} </a>
-              {% else %}
-                <a class="nav-link" href="{% url 'create' %}">Welcome {{ user.username }} (Create Product)</a>
-              {% endif %}
-               
-            </li>
-            <li class="nav-item mr-3">
-              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-              <form action="{% url 'logout' %}" method="POST" id="logout">
-                {% csrf_token %}
-                <input type="hidden">
-              </form>
-            </li>
+    <div class="collapse navbar-collapse" id="ftco-nav">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item    
+          {% if 'index' in request.path %}
+          active
+          {% endif %}"
+      >
+      <a href="{% url 'index' %}" class="nav-link">Home</a></li>
+
+        <li class="nav-item
+        {% if 'about' in request.path %}
+        active
+        {% endif %}
+        "><a href="{% url 'about' %}" class="nav-link">About</a></li>
+
+        <!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li> -->
+        {% if user.is_authenticated %}
+        <li class="nav-item
+        {% if 'listings' in request.path %}
+        active
+        {% endif %}
+        "><a href="{% url 'listings' %}" class="nav-link">Listings</a></li>
+        {% if user.is_buyer == false %}
+        <li class="nav-item
+        {% if 'create' in request.path %}
+        active
+        {% endif %}
+        "><a href="{% url 'create' %}" class="nav-link">Create Auction</a></li>
+        {% endif %}
+        <li class="nav-item"> <a href="#" class="nav-link"> Welcome {{ user.username }}</a></li>
+        
+        <li class="nav-item"> <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Log Out<form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <input type="hidden">
+          </form></a></li>
+
+          
           {% else %}
-            <li
-            {% if 'register' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'register' %}">
-                <i class="fas fa-user-plus"></i> Register</a>
-            </li>
-            <li
-            {% if 'login' in request.path %}
-              class="nav-item active mr-3"
-            {% else %}
-              class="nav-item mr-3"
-            {% endif %}
-            >
-              <a class="nav-link" href="{% url 'login' %}">
-                <i class="fas fa-sign-in-alt"></i>
-
-                Login</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
+        <li class="nav-item cta"><a href="{% url 'login' %}" class="nav-link"><span>Get started</span></a></li>
+        {% endif %}
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+  <!-- END nav -->
