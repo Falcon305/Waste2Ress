@@ -92,15 +92,16 @@ def search(request):
 @seller_required
 def create(request):
     if request.method == 'POST':
-        if request.POST['title'] and request.POST['description'] and request.POST['quantity'] and request.FILES['photo_main'] and request.FILES['photo_1'] and request.FILES['photo_2'] and request.FILES['photo_3'] and request.FILES['photo_4'] and request.FILES['photo_5'] and request.FILES['photo_6'] and request.POST['category'] and request.POST['price'] and request.POST['address'] and request.POST['city'] and request.POST['state'] and request.POST['zipcode'] and request.POST['delivery'] :
+        if request.POST['title'] and request.POST['description'] and request.POST['quantity'] and request.FILES['photo_main'] and request.POST['category'] and request.POST['price'] and request.POST['address'] and request.POST['city'] and request.POST['zipcode'] and request.POST['delivery'] :
             product = Listing()
             product.title = request.POST['title']
             product.photo_main = request.FILES['photo_main']
-            product.photo_2 = request.FILES['photo_2']
-            product.photo_3 = request.FILES['photo_3']
-            product.photo_4 = request.FILES['photo_4']
-            product.photo_5 = request.FILES['photo_5']
-            product.photo_6 = request.FILES['photo_6']
+            product.photo_1 = request.FILES.get('photo_1', False)
+            product.photo_2 = request.FILES.get('photo_2', False)
+            product.photo_3 = request.FILES.get('photo_3', False)
+            product.photo_4 = request.FILES.get('photo_4', False)
+            product.photo_5 = request.FILES.get('photo_5', False)
+            product.photo_6 = request.FILES.get('photo_6', False)
             product.description = request.POST['description']
             product.quantity = request.POST['quantity']
             product.category = request.POST['category']
