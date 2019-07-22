@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% load humanize %}
@@ -6,137 +5,157 @@
 {% block title %} | {{ listing.title }} {% endblock %}
 
 {% block content %}
-    <!-- <div class="js-fullheight"> -->
-        <div class="hero-wrap hero-wrap-0" style="background-image: url({{ listing.photo_main.url }}); background-size: cover; background-repeat: no-repeat; background-position: center center;">
-            <div class="overlay"></div>
-            <div class="circle-bg"></div>
-            <div class="circle-bg-2"></div>
-            <div class="container-fluid">
-              <div class="row no-gutters d-flex slider-text slider-text-0 align-items-center justify-content-center" data-scrollax-parent="true">
-                <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-                  <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{% url 'index' %}">Home</a></span> <span class="mr-2"><a href="{% url 'listings' %}">Listings</a></span> <span>{{ listing.title }}</span></p>
-                  <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{ listing.title }}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- <div class="js-fullheight"> -->
+<div class="hero-wrap hero-wrap-0"
+  style="background-image: url({{ listing.photo_main.url }}); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+  <div class="overlay"></div>
+  <div class="circle-bg"></div>
+  <div class="circle-bg-2"></div>
+  <div class="container-fluid">
+    <div class="row no-gutters d-flex slider-text slider-text-0 align-items-center justify-content-center"
+      data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a
+              href="{% url 'index' %}">Home</a></span> <span class="mr-2"><a
+              href="{% url 'listings' %}">Listings</a></span> <span>{{ listing.title }}</span></p>
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{ listing.title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="ftco-section ftco-degree-bg">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 ftco-animate">
-          <h1 class="mb-3 text-center">{{ listing.title }}</h2>
-      
-              <div class="tagcloud text-center">
-                <a href="" class="tag-cloud-link"><p class="tag-cloud-link">{{ listing.get_category_display }}</p></a>
-              </div>
-            <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <h1 class="mb-3 text-center">{{ listing.title }}</h2>
 
-            <div class="one-half align-self-md-end align-self-sm-center">
-              <div class="carousel-testimony owl-carousel ftco-owl">
-                <div class="item my-img" style="background-image: url({{ listing.photo_main.url }})">
-                </div>
-                {% if listing.photo_1 %}
-                <div class="item my-img">
-                  <img src="{{ listing.photo_1.url }}" class="img-fluid my-img"alt="">
-                </div>
-                {% endif %}
-                {% if listing.photo_2 %}
-                <div class="item my-img" style="background-image: url({{ listing.photo_2.url }})">
-                </div>
-                {% endif %}
-                {% if listing.photo_3 %}
-                <div class="item my-img" style="background-image: url({{ listing.photo_3.url }})">
-                </div>
-                {% endif %}
-                {% if listing.photo_4 %}
-                <div class="item my-img" style="background-image: url({{ listing.photo_4.url }})">
-                </div>
-                {% endif %}
-                {% if listing.photo_5 %}
-                <div class="item my-img" style="background-image: url({{ listing.photo_5.url }})">
-                </div>
-                {% endif %}
-                {% if listing.photo_6 %}
-                <div class="item my-img" style="background-image: url({{ listing.photo_6.url }})">
-                </div>
-                {% endif %}
+          <div class="tagcloud text-center">
+            <a href="" class="tag-cloud-link bg-light">
+              <p class="tag-cloud-link">{{ listing.get_category_display }}</p>
+            </a>
+          </div>
+          <hr>
+
+          <div class="one-half align-self-md-end align-self-sm-center">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item my-img" style="background-image: url({{ listing.photo_main.url }})">
               </div>
-            </div>
-            <div class="row py-2 text-secondary text-center">
-                <div class="col-2">
-                  <i class="fas fa-city"></i> City: {{listing.city }}</div>
-                <div class="col-2">
-                  <i class="fas fa-weight-hanging"></i> Quantity: {{listing.quantity }} <small>TON</small></div>
-                  <div class="col-2">
-                    <i class="fas fa-truck"></i> {{listing.delivery }}</div>
-                  <div class="col-2">
-                    <i class="fas fa-map-marker-alt"></i> ZipCode: {{listing.zipcode }}</div>
-                    
-                    <div class="col-3">
-                        <i class="fas fa-comment-dollar"></i> Start Price: {{listing.price }} <small>mad</small> </div>
+              {% if listing.photo_1 %}
+              <div class="item my-img">
+                <img src="{{ listing.photo_1.url }}" class="img-fluid my-img" alt="">
               </div>
-              <hr>
-            <p>{{ listing.description }}</p>
-            <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">BID</a>
-            <hr>
-          <div class="about-author d-flex p-5 bg-light rounded">
-            <div class="bio align-self-md-center mr-5">
-              <!-- <img src="{{ listing.seller.photo.url}}" alt="Image placeholder" class="img-fluid mb-4"> -->
+              {% endif %}
+              {% if listing.photo_2 %}
+              <div class="item my-img" style="background-image: url({{ listing.photo_2.url }})">
+              </div>
+              {% endif %}
+              {% if listing.photo_3 %}
+              <div class="item my-img" style="background-image: url({{ listing.photo_3.url }})">
+              </div>
+              {% endif %}
+              {% if listing.photo_4 %}
+              <div class="item my-img" style="background-image: url({{ listing.photo_4.url }})">
+              </div>
+              {% endif %}
+              {% if listing.photo_5 %}
+              <div class="item my-img" style="background-image: url({{ listing.photo_5.url }})">
+              </div>
+              {% endif %}
+              {% if listing.photo_6 %}
+              <div class="item my-img" style="background-image: url({{ listing.photo_6.url }})">
+              </div>
+              {% endif %}
             </div>
-            <div class="desc align-self-md-center">
-              <h3>{{ listing.seller }}</h3>
-              <!-- text here bout seller -->
+          </div>
+          <div class="row py-2 text-secondary text-center">
+            <div class="col-2">
+              <i class="fas fa-city"></i> City: {{listing.city }}</div>
+            <div class="col-2">
+              <i class="fas fa-weight-hanging"></i> Quantity: {{listing.quantity }} <small>TON</small></div>
+            <div class="col-2">
+              <i class="fas fa-truck"></i> {{listing.delivery }}</div>
+            <div class="col-2">
+              <i class="fas fa-map-marker-alt"></i> ZipCode: {{listing.zipcode }}</div>
+
+            <div class="col-3">
+              <i class="fas fa-comment-dollar"></i> Start Price: {{listing.price }} <small>mad</small> </div>
+          </div>
+          <hr>
+          <p>{{ listing.description }}</p>
+          {% if user.is_authenticated %}
+          {% if user.is_buyer %}
+          <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">BID</a>
+          {% endif %}
+          {% if listing.seller == user %}
+          <div class="row">
+            <div class="col">
+              <a class="btn btn-danger-1 btn-block mt-1 mb-1"
+                onclick="return confirm('Are you sure you want to delete this?')"
+                href="{% url 'delete' listing.id %}">Delete</a>
             </div>
+            <div class="col">
+              <a class="btn btn-primary btn-block mt-1 mb-1" href="{% url 'update' listing.id %}">Update</a>
+            </div>
+          </div>
+          {% endif %}
+          {% endif %}
+          <hr>
+          <div class="about-author  bg-light rounded text-center">
+
+            <h3 class="text-center">{{ listing.seller }}</h3>
           </div>
 
           <!-- Description -->
-           {% if user.is_authenticated %}
-          
+
+
+          <!-- </div>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <img class="card-img-top" src="" alt="Seller of the month">
+          <div class="card-body text-center">
+            <h5 class="card-title">Seller</h5>
+            <a href="{% url 'profile' slug=request.user.id %}">
+              <h6 class="text-secondary">{{ listing.seller.first_name }}</h6>
+            </a>
+          </div>
         </div>
-        <div class="col-md-3">
-          <div class="card mb-3">
-            <img class="card-img-top" src="" alt="Seller of the month">
-            <div class="card-body text-center">
-              <h5 class="card-title">Seller</h5>
-              <a href="{% url 'profile' slug=request.user.id %}"><h6 class="text-secondary">{{ listing.seller.first_name }}</h6></a>
-            </div>
-          </div>
-          {% if user.is_buyer %}
-          <a href="{% url 'bid' listing.id %}" class="btn-secondary btn-block btn-lg" role="button" aria-pressed="true" style="text-align: center;" >Bid Now</a>
-          {% endif %}
-          {% if listing.seller == user %}
-          <div>
-            <a class="btn btn-danger btn-lg mt-1 mb-1" onclick="return confirm('Are you sure you want to delete this?')" href="{% url 'delete' listing.id %}">Delete</a>
-            {% comment %} <a class="btn btn-danger btn-lg mt-1 mb-1" onclick="return JSalert()" href="">dDelete</a> {% endcomment %}
-            <a class="btn btn-secondary btn-lg mt-1 mb-1" href="{% url 'update' listing.id %}">Update</a>
-          </div>
+        {% if user.is_buyer %}
+        <a href="{% url 'bid' listing.id %}" class="btn-secondary btn-block btn-lg" role="button" aria-pressed="true"
+          style="text-align: center;">Bid Now</a>
         {% endif %}
+        {% if listing.seller == user %}
+        <div>
+
+          {% comment %} <a class="btn btn-danger btn-lg mt-1 mb-1" onclick="return JSalert()" href="">dDelete</a>
+          {% endcomment %}
         </div>
+        {% endif %}
       </div>
     </div>
-  {% endif %}
-    
-  </section>
+  </div> -->
+
+
+</section>
 {% comment %} <script type="text/javascript">
-        function JSalert(){
-          swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
-  }
-});
+  function JSalert() {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your imaginary file is safe!");
         }
+      });
+  }
 </script> {% endcomment %}
 
 {% endblock %}
