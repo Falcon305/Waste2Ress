@@ -1,5 +1,6 @@
 .login-input,
-.sign-up-section .form-control {
+.sign-up-section .form-control,
+.bid-form .form-control {
     border: none;
     background-color: #fff !important;
     color: #81919a !important;
@@ -11,7 +12,10 @@
     border-radius: 3px;
 
 }
-
+.bid-form .form-control{
+    border-bottom: 1px solid rgb(189, 187, 187);
+    margin-bottom: 20px;
+}
 .login-input:-webkit-autofill,
 .login-input:-webkit-autofill:hover,
 .login-input:-webkit-autofill:focus,
@@ -169,10 +173,9 @@
     margin-right: 5%;
     position: relative;
     background: white;
-    width: 400px;
-    height: 75vh;
+    /* width: 400px;
+    height: 75vh; */
     border-radius: 6px;
-    padding: 2rem;
     color: #aaa;
     border: 1px solid rgb(163, 163, 163);
     box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
@@ -180,8 +183,13 @@
 }
 
 .card__image-container1 {
-    margin: -2rem -2rem 1rem -2rem;
-    height: 40%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 315px;
+    padding: 0px !important;
 }
 
 .card__line1 {
@@ -191,7 +199,7 @@
 
 .card__image1 {
     opacity: 0;
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     animation: ImageFadeIn 0.8s 1.4s forwards;
 }
@@ -204,7 +212,7 @@
 }
 
 .card__content1 {
-    margin-top: -1rem;
+    margin-top: 270px;
     opacity: 0;
     animation: ContentFadeIn 0.8s 1.6s forwards;
 }
@@ -269,16 +277,60 @@
 /* this end  */
 
 .btn.btn-danger-1 {
-    background: #ec4444c9;
-    color: #ffffff;
+    border-radius: 30px !important;
+    background: #ec4444c9 !important;
+    color: #ffffff !important;
 }
 
 .btn.btn-danger-1:hover {
-    background: transparent;
-    border: 2px solid #f75252c9;
-    color: #f74c4c;
+    border-radius: 30px !important;
+    background: transparent !important;
+    border: 2px solid #f75252c9 !important;
+    color: #f74c4c !important;
 }
 
 p.tag-cloud-link {
     margin: 0px;
+}
+
+.my-label>a {
+    display: none;
+}
+
+.btn-primary-1 {
+    border-radius: 30px !important;
+    background: #daf6f8 !important;
+    border: 2px solid #daf6f8 !important;
+    color: #24bdc9 !important;
+}
+
+.btn-primary-1:hover {
+    border-radius: 30px !important;
+    border: 2px solid #24bdc9 !important;
+    background: transparent !important;
+    color: #24bdc9 !important;
+}
+
+.alert-icon {
+    color: #24bdc9 !important;
+    border-color: #24bdc9 !important;
+}
+
+.opt {
+    background-color: #f7f7f7fa !important;
+}
+.bid-contianer
+{
+    width: 30vw;
+    padding: 40px;
+    background: white;
+    border: 1px solid rgb(243, 243, 243);
+    border-radius: 5px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 8px 6px -6px gray;
+    -moz-box-shadow: 0 8px 6px -6px gray;
+    box-shadow: 0 10px 15px -10px gray;
+}
+.card-row{
+
 }

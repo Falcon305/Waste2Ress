@@ -21,7 +21,7 @@
 <section id="login" class="bg-light py-5">
   <div class="container my-container">
     <h4 class="text-center mb-4 text-primary">
-      <i class="fa fa-folder-plus"></i> Create </h4>
+      <i class="fa fa-edit"></i> Update</h4>
 
 
     {% include 'partials/_alerts.html' %}
@@ -33,113 +33,121 @@
       {% csrf_token %}
       <div class="row">
         <div class="form-group col">
-          <!-- <input type="text" class="form-control" name="title" placeholder="Title" /> -->
           {{ form.title|as_crispy_field }}
         </div>
 
         <div class="form-group col">
-          <select name="category" class="select form-control" required="" id="id_category">
-            <option value="">---------</option>
-            <option value="CW">Construction waste</option>
-            <option value="ET">Electronics</option>
-            <option value="GLS" selected="">Glass</option>
-            <option value="HAZ">Hazardous</option>
-            <option value="FER">Metals</option>
-            <option value="HAZ">Hazardous</option>
-            <option value="MWP">Mixed waste products</option>
-            <option value="ORG">Organic</option>
-            <option value="PAC">Paper and cardboard</option>
-            <option value="MK">Plastics</option>
-            <option value="RUB">Rubber</option>
-            <option value="TOB">Textiles</option>
-          </select>
+          {{ form.category|as_crispy_field }}
         </div>
 
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="Quantity" name="quantity" />
+          {{ form.quantity|as_crispy_field }}
         </div>
 
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="Price" name="price" />
+          {{ form.price|as_crispy_field }}
         </div>
 
       </div>
 
       <div class="row">
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="Address" name="address" />
+          {{ form.address|as_crispy_field }}
         </div>
 
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="City" name="city" />
+          {{ form.city|as_crispy_field }}
         </div>
 
 
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="Zipcode" name="zipcode" />
+          {{ form.zipcode|as_crispy_field }}
         </div>
 
         <div class="form-group col">
-          <input type="text" class="form-control" placeholder="Delivery" name="delivery" />
+          {{ form.delivery|as_crispy_field }}
         </div>
       </div>
 
       <div class="form-group">
         <div class="row">
-          <label for="photo_main" class="my-label  main-pic ftco-animate fadeInUp ftco-animated">
-            <input type="file" class="form-control-file my-file-input" name="photo_main" />
+          <label for="photo_main" class="my-label  main-pic ftco-animate fadeInUp ftco-animated"
+            style="background: url({{ form.photo_main.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_main" /> -->
+            {{ form.photo_main|as_crispy_field}}
+            {%if form.photo_main.value %}
+            {% else %}
             <p class="file-return">Main Photo</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
         </div>
         <div class="row">
-          <label for="photo_1" class="my-label  mr-4 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_1" />
+          <label for="photo_1" class="my-label  mr-4 col"
+            style="background: url({{ form.photo_1.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_1" /> -->
+            {{ form.photo_1}} {%if form.photo_1.value %} {% else %}
             <p class="file-return">Image 1</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
 
-          <label for="photo_2" class="my-label  mr-4 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_2" />
+          <label for="photo_2" class="my-label  mr-4 col"
+            style="background: url({{ form.photo_2.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_2" /> -->
+            {{ form.photo_2}} {%if form.photo_2.value %} {% else %}
             <p class="file-return">Image 2</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
 
-          <label for="photo_3" class="my-label   mr-4 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_3" />
+          <label for="photo_3" class="my-label   mr-4 col"
+            style="background: url({{ form.photo_3.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_3" /> -->
+            {{ form.photo_3}} {%if form.photo_3.value %} {% else %}
             <p class="file-return">Image 3</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
 
-          <label for="photo_4" class="my-label  mr-4 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_4" />
+          <label for="photo_4" class="my-label  mr-4 col"
+            style="background: url({{ form.photo_4.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_4" /> -->
+            {{ form.photo_4}} {%if form.photo_4.value %} {% else %}
             <p class="file-return">Image 4</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
 
-          <label for="photo_5" class="my-label  mr-4 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_5" />
+          <label for="photo_5" class="my-label  mr-4 col"
+            style="background: url({{ form.photo_5.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_5" /> -->
+            {{ form.photo_5}} {%if form.photo_5.value %} {% else %}
             <p class="file-return">Image 5</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
 
-          <label for="photo_6" class="my-label   mr-0 col">
-            <input type="file" class="form-control-file my-file-input" name="photo_6" />
+          <label for="photo_6" class="my-label   mr-0 col"
+            style="background: url({{ form.photo_6.value.url}}) center center no-repeat; background-size:cover;">
+            <!-- <input type="file" class="form-control-file my-file-input" name="photo_6" /> -->
+            {{ form.photo_6}} {%if form.photo_6.value %} {% else %}
             <p class="file-return">Image 6</p>
+            {% endif %}
             <i class="fa fa-plus-square my-icon fa-2x"></i>
           </label>
         </div>
       </div>
 
       <div class="form-group">
-        <textarea class="form-control my-textarea" placeholder="Description" name="description"></textarea>
+        {{ form.description|as_crispy_field }}
       </div>
 
 
 
 
 
-      <input class="btn btn-primary py-3 px-5 btn-block mt-3" type="submit" value="Add Product" />
+      <input class="btn btn-primary py-3 px-5 btn-block mt-3" type="submit" value="Update" />
 
     </form>
 

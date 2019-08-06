@@ -20,7 +20,7 @@ class SellerSignUpForm(UserCreationForm):
         super(SellerSignUpForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
-        self.fields['username'].widget.attrs.update({'placeholder': 'Username', 'class':' form-control login-input'})
+        self.fields['username'].widget.attrs.update({'placeholder': 'Username', 'class':' form-control'})
         self.fields['password1'].widget.attrs.update({'placeholder': 'Password', 'class':' form-control login-input'})
         self.fields['password2'].widget.attrs.update({'placeholder': 'Password Confirmation', 'class':' form-control login-input'})
         self.fields['email'].widget.attrs.update({'placeholder': 'email', 'class':' form-control login-input'})

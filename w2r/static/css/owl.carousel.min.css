@@ -56,8 +56,20 @@
 
 .owl-carousel .owl-item img {
     display: block;
-    width: 32%;
     margin: auto;
+    margin-right: 1vw;
+}
+@media(min-width: 1401px)
+{
+    .owl-carousel .owl-item img {
+        width: 16vw;
+    }
+}
+@media(max-width: 1400px)
+{
+    .owl-carousel .owl-item img {
+        width: 25vw;
+    }
 }
 
 .owl-carousel .owl-dots.disabled,
